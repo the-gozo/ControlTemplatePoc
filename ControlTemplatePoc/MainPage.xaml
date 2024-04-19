@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlTemplatePoc.MainPage">
+    <VerticalStackLayout Padding="30,0"
+                         Spacing="25">
+        <Button x:Name="CounterBtn"
+                Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" />
+        <Frame x:Name="frame"
+               HeightRequest="500">
+            <Frame.Resources>
+                <ControlTemplate x:Key="First">
+                    <Label Text="First"
+                           IsVisible="True" />
+                </ControlTemplate>
+                <ControlTemplate x:Key="Second">
+                    <Label Text="Second"
+                           IsVisible="True" />
+                </ControlTemplate>
+            </Frame.Resources>
+            <Frame.Triggers>
+                <DataTrigger TargetType="Frame"
+                             Binding="{Binding Boolean}"
+                             Value="True">
+                    <Setter Property="ControlTemplate"
+                            Value="{StaticResource First}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Frame"
+                             Binding="{Binding Boolean}"
+                             Value="False">
+                    <Setter Property="ControlTemplate"
+                            Value="{StaticResource Second}" />
+                </DataTrigger>
+            </Frame.Triggers>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
